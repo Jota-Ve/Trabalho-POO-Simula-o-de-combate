@@ -7,7 +7,7 @@ import poderes.Poderes;
 
 public class Combate {
     public static int dist;
-    
+
     public static void distancia() {
         switch(dist) {
             case 1 -> System.out.println("\n---Voce esta de frente para o seu inimigo---");
@@ -15,7 +15,7 @@ public class Combate {
             default -> System.out.println("\n---Voce esta distante do seu inimigo---");
         }
     }
-    
+
     public static boolean turnoInimigo() {
         int padrao = 1, mov = 1;
         boolean atacar = false;
@@ -37,51 +37,51 @@ public class Combate {
         }
         return atacar;
     }
-    
+
     public static int ataque(int atq, int def, int pv, int dado, int margem, int critico) {
         int x = 1, dano;
-        int golpe = Dados.dado(1, 20);
+        int golpe = Dados.rolarDados(1, 20);
         System.out.println("\nROLANDO O ATAQUE...");
         System.out.println("\nO RESULTADO DO ATAQUE FOI "+(golpe+atq));
         if(golpe >= margem) {
             System.out.println("\n---Acerto critico!---");
             x = critico;
-            dano = Dados.dado(x, dado);
+            dano = Dados.rolarDados(x, dado);
             return (pv-dano);
         }
         if(golpe+atq >= def) {
             System.out.println("\n---Ataque certeiro!---");
-            dano = Dados.dado(x, dado);
+            dano = Dados.rolarDados(x, dado);
             return (pv-dano);
         }
         System.out.println("\n---Ataque bloqueado!---");
         return pv;
     }
-    
+
     public static int ataqueEspecial(int pvV, int atqH, int defV) {
         pvV = ataque(atqH+4, defV, pvV, Personagem.getArma().getDano(), Personagem.getArma().getMargem(), Personagem.getArma().getCritico());
         return pvV;
     }
-    
+
     public static int marcaCacador(int pvV, int atqH, int defV) {
         pvV = ataque(atqH+4, defV, pvV, Personagem.getArma().getDano(), Personagem.getArma().getMargem()-2, Personagem.getArma().getCritico());
         return pvV;
     }
-    
+
     public static int curarFerimentos(int pvH) {
-        int cura = Dados.dado(2, 8);
+        int cura = Dados.rolarDados(2, 8);
         System.out.println("\nROLANDO OS DADOS...");
         System.out.println("\nPV RESTAURADOS: "+cura);
         return (pvH+cura);
     }
-    
+
     public static int bolaFogo(int pvV) {
-        int dano = Dados.dado(3, 6);
+        int dano = Dados.rolarDados(3, 6);
         System.out.println("\nROLANDO OS DADOS...");
         System.out.println("\nDANO CAUSADO: "+dano);
         return (pvV-dano);
     }
-    
+
     public static void opcoes(int padrao) {
         System.out.println("\nESCOLHA UMA OPCAO:");
         System.out.println("1 -> AVANCAR");
@@ -94,18 +94,18 @@ public class Combate {
         if(padrao == 0) System.out.println("---Voce nao possui mais acao padrao---");
         System.out.println("5 -> ENCERRAR TURNO");
     }
-    
+
     public static void resumoTurno(int pvH, int manaH, int pvV) {
         System.out.println("\nHEROI:");
         System.out.printf("PV: %d/%d       Mana: %d/%d", pvH, Personagem.getPv(), manaH, Personagem.getMana());
         System.out.println("\nINIMIGO:");
         System.out.printf("PV: %d", pvV);
     }
-    
+
     public static boolean confereMana(int manaH) {
         return (manaH >= Personagem.getClasse().getPm());
     }
-    
+
     public static boolean luta(Inimigo inimigo) {
         Scanner teclado = new Scanner(System.in);
         System.out.println("---Pressione qualquer tecla para iniciar o combate---");
@@ -114,15 +114,15 @@ public class Combate {
         int pvV = inimigo.getPv(), defV = inimigo.getDefesa(), deslocamentoV = inimigo.getDeslocamento(), atqV = inimigo.getAtq();
         System.out.println("\n---Um "+inimigo.getNome()+" apareceu!---");
         System.out.println("---Role Iniciativa para tentar agir primeiro---");
-        int iniH = Dados.dado(1, 20) + deslocamentoH;
-        int iniV = Dados.dado(1, 20) + deslocamentoV;
+        int iniH = Dados.rolarDados(1, 20) + deslocamentoH;
+        int iniV = Dados.rolarDados(1, 20) + deslocamentoV;
         System.out.println("\nROLANDO OS DADOS...\n");
         System.out.println("\nSEU RESULTADO FOI "+iniH);
         System.out.println("O RESULTADO DO "+inimigo.getNome()+" FOI "+iniV);
         System.out.println("\n---O combate comecou!---");
         if(iniH >= iniV) System.out.println("\n---Voce ira agir primeiro---");
         else System.out.println("\n---"+inimigo.getNome()+" ira agir primeiro---");
-        dist = Dados.dado(1, 3);
+        dist = Dados.rolarDados(1, 3);
         int op, mov, padrao;
         do {
             resumoTurno(pvH, manaH, pvV);
@@ -135,8 +135,8 @@ public class Combate {
             }
             if(pvH <= 0) break;
             distancia();
-            
-            
+
+
             mov = 1;
             padrao = 1;
             do {
@@ -170,7 +170,7 @@ public class Combate {
                             System.out.println("\nOPCAO INVALIDA!");
                             break;
                         }
-                        
+
                         switch(Personagem.getClasse().getPoder()) {
                             case 5 -> {
                                 if(Personagem.getArma().getAlcance() > dist) System.out.println("\nINIMIGO MUITO DISTANTE!");
@@ -216,8 +216,8 @@ public class Combate {
             } while(mov+padrao>0);
             if(pvV <= 0) break;
             distancia();
-            
-        
+
+
             if(iniH >= iniV) {
                 if (turnoInimigo()) {
                     dist = 1;

@@ -37,35 +37,41 @@ public class TestMenu {
         System.setOut(originalOut);
     }
 
+    public static String formataString(String str) {
+        // Formata a string para evitar falhas por causa de diferenças de quebra de linha
+        return str.replace("\r\n", "\n");
+    }
+
+    public static String getSaidaReal() {
+        // Retorna a saída real formatada
+        return formataString(outContent.toString(StandardCharsets.UTF_8));
+    }
+
 
     @Test
     void testImprimirMenuPrincipal() {
         // define a saída esperada
-        String SAIDA_ESPERADA = """
-                O que deseja fazer?
-                1 - Imprimir Racas
-                2 - Imprimir Classes
-                3 - Escolher Raca
-                4 - Escolher Classe
-                5 - Rolar Dados
-                6 - Fechar
-                """;
+        String SAIDA_ESPERADA = formataString("""
+            O que deseja fazer?
+            1 - Imprimir Racas
+            2 - Imprimir Classes
+            3 - Escolher Raca
+            4 - Escolher Classe
+            5 - Rolar Dados
+            6 - Fechar
+            """);
 
         // chama o método que imprime no console
         Menu.imprimirMenuPrincipal();
-
-        // Formata a saída para evitar falhas por causa de diferenças de quebra de linha
-        String esperado = SAIDA_ESPERADA.replace("\r\n", "\n");
-        String atual = outContent.toString(StandardCharsets.UTF_8).replace("\r\n", "\n");
-
-        assertEquals(esperado, atual);
+        // compara a saída esperada com a saída real
+        assertEquals(SAIDA_ESPERADA, getSaidaReal());
     }
 
 
     @Test
     void testImprimirMenuEquipamento() {
         // define a saída esperada
-        String SAIDA_ESPERADA = """
+        String SAIDA_ESPERADA = formataString("""
 
             O que deseja fazer?
             1 - Imprimir Armas
@@ -73,16 +79,12 @@ public class TestMenu {
             3 - Escolher Arma
             4 - Escolher Armadura
             5 - Fechar
-            """;
+            """);
 
         // chama o método que imprime no console
         Menu.imprimirMenuEquipamentos();
-
-        // Formata a saída para evitar falhas por causa de diferenças de quebra de linha
-        String esperado = SAIDA_ESPERADA.replace("\r\n", "\n");
-        String atual = outContent.toString(StandardCharsets.UTF_8).replace("\r\n", "\n");
-
-        assertEquals(esperado, atual);
+        // compara a saída esperada com a saída real
+        assertEquals(SAIDA_ESPERADA, getSaidaReal());
     }
 
 

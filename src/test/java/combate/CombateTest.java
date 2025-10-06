@@ -73,8 +73,6 @@ public class CombateTest {
         String entradasSimuladas = "s\n3\n5\n";
         InputStream inputStreamSimulado = new ByteArrayInputStream(entradasSimuladas.getBytes());
         System.setIn(inputStreamSimulado);
-
-        Inimigo inimigo = new MockInimigo(new Armas(4, 20, 2, 1, "Adaga Inimiga", "Perfuração"));
         
     }
 

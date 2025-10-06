@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class TestMenu {
@@ -20,6 +21,12 @@ public class TestMenu {
         System.setOut(new PrintStream(outContent));
     }
 
+    @BeforeEach
+    public void limpaBuffer(){
+        // limpa o conteúdo do buffer antes de cada teste
+        outContent.reset();
+    }
+
     @AfterAll
     public static void finaliza(){
         // restaura a saída padrão
@@ -28,7 +35,7 @@ public class TestMenu {
 
 
     @Test
-    void deveImprimirMensagemEsperada() {
+    void testImprimirMenuPrincipal() {
         // define a saída esperada
         String SAIDA_ESPERADA = """
                 O que deseja fazer?
@@ -41,14 +48,37 @@ public class TestMenu {
                 """;
 
         // chama o método que imprime no console
-        Menu.imprimeMenuPrincipal();
+        Menu.imprimirMenuPrincipal();
 
-        // verifica se a saída é a esperada
+        // Formata a saída para evitar falhas por causa de diferenças de quebra de linha
         String esperado = SAIDA_ESPERADA.replace("\r\n", "\n");
         String atual = outContent.toString(StandardCharsets.UTF_8).replace("\r\n", "\n");
 
         assertEquals(esperado, atual);
+    }
 
+
+    @Test
+    void testImprimirMenuEquipamento() {
+        // define a saída esperada
+        String SAIDA_ESPERADA = """
+
+            O que deseja fazer?
+            1 - Imprimir Armas
+            2 - Imprimir Armaduras
+            3 - Escolher Arma
+            4 - Escolher Armadura
+            5 - Fechar
+            """;
+
+        // chama o método que imprime no console
+        Menu.imprimirMenuEquipamentos();
+
+        // Formata a saída para evitar falhas por causa de diferenças de quebra de linha
+        String esperado = SAIDA_ESPERADA.replace("\r\n", "\n");
+        String atual = outContent.toString(StandardCharsets.UTF_8).replace("\r\n", "\n");
+
+        assertEquals(esperado, atual);
     }
 
 }

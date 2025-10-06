@@ -10,7 +10,7 @@ import racasClasses.*;
 
 public class Menu {
 
-    public static void imprimeMenuPrincipal() {
+    public static void imprimirMenuPrincipal() {
         System.out.println("O que deseja fazer?");
         System.out.println("1 - Imprimir Racas");
         System.out.println("2 - Imprimir Classes");
@@ -20,7 +20,7 @@ public class Menu {
         System.out.println("6 - Fechar");
     }
 
-    public static void equipamentos() {
+    public static void imprimirMenuEquipamentos() {
         System.out.println("\nO que deseja fazer?");
         System.out.println("1 - Imprimir Armas");
         System.out.println("2 - Imprimir Armaduras");
@@ -44,7 +44,7 @@ public class Menu {
             // tratamento de exceção InputMismatchException:
              try{
                 Scanner teclado = new Scanner(System.in);
-                imprimeMenuPrincipal();
+                imprimirMenuPrincipal();
                 op = teclado.nextInt();
 
              }catch(InputMismatchException e){
@@ -112,7 +112,7 @@ public class Menu {
             // tratamento de exceção InputMismatchException:
             try{
                 Scanner teclado = new Scanner(System.in);
-                equipamentos();
+                imprimirMenuEquipamentos();
                 op = teclado.nextInt();
 
              }catch(InputMismatchException InputMismatchException){

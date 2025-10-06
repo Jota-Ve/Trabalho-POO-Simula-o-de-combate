@@ -10,7 +10,7 @@ import racasClasses.*;
 
 public class Menu {
 
-    public static void imprimeMenuPrincipal() {
+    public static void imprimirMenuPrincipal() {
         System.out.println("O que deseja fazer?");
         System.out.println("1 - Imprimir Racas");
         System.out.println("2 - Imprimir Classes");
@@ -20,7 +20,7 @@ public class Menu {
         System.out.println("6 - Fechar");
     }
 
-    public static void equipamentos() {
+    public static void imprimirMenuEquipamentos() {
         System.out.println("\nO que deseja fazer?");
         System.out.println("1 - Imprimir Armas");
         System.out.println("2 - Imprimir Armaduras");
@@ -29,7 +29,7 @@ public class Menu {
         System.out.println("5 - Fechar");
     }
 
-    public static void exec() {
+    public static void exec(Scanner teclado) {
         System.out.println("----- Bem Vindo(a) ao menu -----");
         int verifica[] = new int[3];
 
@@ -43,12 +43,13 @@ public class Menu {
         do{
             // tratamento de exceção InputMismatchException:
              try{
-                Scanner teclado = new Scanner(System.in);
-                imprimeMenuPrincipal();
+                // Scanner teclado = new Scanner(System.in);
+                imprimirMenuPrincipal();
                 op = teclado.nextInt();
 
              }catch(InputMismatchException e){
                 System.out.println("Opcao invalida. Por favor, digite um numero.");
+                teclado.next(); // limpa o scanner
                 continue;
              }
 
@@ -92,7 +93,7 @@ public class Menu {
             }
         }while(op != 6 );
 
-        Scanner teclado = new Scanner(System.in);
+        // Scanner teclado = new Scanner(System.in);
         //teclado.nextLine();
         System.out.println("\n\n---Muito bem! Agora, vamos para a parte mais dificil: a escolha de um nome!---");
         System.out.print("\nDigite o nome do seu presonagem: ");
@@ -112,7 +113,7 @@ public class Menu {
             // tratamento de exceção InputMismatchException:
             try{
                 Scanner teclado = new Scanner(System.in);
-                equipamentos();
+                imprimirMenuEquipamentos();
                 op = teclado.nextInt();
 
              }catch(InputMismatchException InputMismatchException){

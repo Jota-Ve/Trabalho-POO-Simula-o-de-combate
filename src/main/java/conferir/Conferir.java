@@ -1,6 +1,6 @@
 package conferir;
 
-import static ficha.Menu.imprimeMenuPrincipal;
+import static ficha.Menu.imprimirMenuPrincipal;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 

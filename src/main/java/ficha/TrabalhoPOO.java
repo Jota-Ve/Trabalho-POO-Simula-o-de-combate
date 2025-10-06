@@ -5,6 +5,9 @@ import racasClasses.BancoDeRacas;
 import equipamentos.BancoDeArmaduras;
 import equipamentos.BancoDeArmas;
 import poderes.Poderes;
+
+import java.util.Scanner;
+
 import combate.BancoDeInimigos;
 import combate.Combate;
 
@@ -16,7 +19,7 @@ public class TrabalhoPOO {
         System.out.println("      Nivel: "+Personagem.getNivel());
         Personagem.imprimeAtributos();
     }
-    
+
     public static void imprimirFicha() {
         System.out.print("\n\nNome: "+Personagem.getNome());
         System.out.print("      Raca: "+Personagem.getRaca().getNome());
@@ -30,10 +33,11 @@ public class TrabalhoPOO {
         System.out.println("Poderes: ");
         System.out.println(Poderes.mapPoderes.get(Personagem.getRaca().getPoder()));
         System.out.println(Poderes.mapPoderes.get(Personagem.getClasse().getPoder()));
-        
+
     }
-    
+
     public static void main(String[] args) {
+        Scanner teclado = new Scanner(System.in);
         BancoDeRacas bancoDeRacas = new BancoDeRacas();
         BancoDeClasses bancoDeClasses = new BancoDeClasses();
         BancoDeArmaduras bancoDeArmaduras = new BancoDeArmaduras();
@@ -43,9 +47,9 @@ public class TrabalhoPOO {
         //os construtores preparam os dicionarios
         Personagem personagem = new Personagem();
         //Combate combate = new Combate(20,20);
-        //caso queira fazer um teste, retire a chamada acima do comentário 
-        
-        Menu.exec();
+        //caso queira fazer um teste, retire a chamada acima do comentário
+
+        Menu.exec(teclado);
         Personagem.iniciar();
         imprimirFichaProvisoria();
         Menu.exec2();
@@ -61,7 +65,7 @@ public class TrabalhoPOO {
                 System.out.println("---Parabens pela vitoria!---");
             }
             else System.out.println("---Tente de novo!---");
-        } while(!vencer);        
+        } while(!vencer);
         imprimirFicha();
         if(Menu.encerrar()) return;
         do {
@@ -71,7 +75,7 @@ public class TrabalhoPOO {
                 System.out.println("---Parabens pela vitoria!---");
             }
             else System.out.println("---Tente de novo!---");
-        } while(!vencer);        
+        } while(!vencer);
         imprimirFicha();
         if(Menu.encerrar()) return;
         do {
@@ -81,7 +85,7 @@ public class TrabalhoPOO {
                 System.out.println("---Parabens pela vitoria!---");
             }
             else System.out.println("---Tente de novo!---");
-        } while(!vencer);        
+        } while(!vencer);
         imprimirFicha();
     }
 }

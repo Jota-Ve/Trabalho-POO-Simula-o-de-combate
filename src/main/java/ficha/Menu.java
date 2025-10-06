@@ -29,7 +29,7 @@ public class Menu {
         System.out.println("5 - Fechar");
     }
 
-    public static void exec() {
+    public static void exec(Scanner teclado) {
         System.out.println("----- Bem Vindo(a) ao menu -----");
         int verifica[] = new int[3];
 
@@ -43,13 +43,13 @@ public class Menu {
         do{
             // tratamento de exceção InputMismatchException:
              try{
-                Scanner teclado = new Scanner(System.in);
+                // Scanner teclado = new Scanner(System.in);
                 imprimirMenuPrincipal();
                 op = teclado.nextInt();
 
              }catch(InputMismatchException e){
                 System.out.println("Opcao invalida. Por favor, digite um numero.");
-                continue;
+                break;
              }
 
             switch(op){
@@ -92,7 +92,7 @@ public class Menu {
             }
         }while(op != 6 );
 
-        Scanner teclado = new Scanner(System.in);
+        // Scanner teclado = new Scanner(System.in);
         //teclado.nextLine();
         System.out.println("\n\n---Muito bem! Agora, vamos para a parte mais dificil: a escolha de um nome!---");
         System.out.print("\nDigite o nome do seu presonagem: ");

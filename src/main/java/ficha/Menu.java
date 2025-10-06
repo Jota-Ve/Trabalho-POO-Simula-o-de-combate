@@ -49,7 +49,8 @@ public class Menu {
 
              }catch(InputMismatchException e){
                 System.out.println("Opcao invalida. Por favor, digite um numero.");
-                break;
+                teclado.next(); // limpa o scanner
+                continue;
              }
 
             switch(op){

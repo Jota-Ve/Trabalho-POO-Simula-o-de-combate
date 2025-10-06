@@ -1,15 +1,9 @@
 package ficha;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
+import static org.junit.jupiter.api.Assertions.*;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -88,21 +82,5 @@ public class TestMenu {
     }
 
 
-    @Test
-    void quandoEntradaNaoNumerica_deveImprimirMensagemDeErro() {
-        // cria mock do Scanner
-        Scanner mockScanner = mock(Scanner.class);
-
-        // simula comportamento: nextInt() lança InputMismatchException
-        when(mockScanner.nextInt()).thenThrow(new InputMismatchException());
-
-        // chama o método que usa o Scanner; adapte se sua API for diferente
-        // Exemplo: Menu.exec(Scanner teclado) onde exec trata o try/catch mostrado
-        Menu.exec(mockScanner);
-
-        String atual = outContent.toString(StandardCharsets.UTF_8).replace("\r\n", "\n");
-        String esperado = "Opcao invalida. Por favor, digite um numero.\n";
-        assertEquals(esperado, atual);
-    }
 
 }

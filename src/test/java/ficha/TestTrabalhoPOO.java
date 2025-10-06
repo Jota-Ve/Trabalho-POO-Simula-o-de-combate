@@ -17,7 +17,7 @@ import poderes.Poderes;
 
 import static org.mockito.Mockito.*;
 
-public class TesteTrabalhoPOO {
+public class TestTrabalhoPOO {
 
     private static final PrintStream saidaOriginal = System.out;
     private static final ByteArrayOutputStream saidaCapturada = new ByteArrayOutputStream();

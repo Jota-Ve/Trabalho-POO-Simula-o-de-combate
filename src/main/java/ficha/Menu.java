@@ -9,9 +9,9 @@ import java.util.List;
 import racasClasses.*;
 
 public class Menu {
-    
-    public static void menu() {
-        System.out.println("\nO que deseja fazer?");
+
+    public static void imprimeMenuPrincipal() {
+        System.out.println("O que deseja fazer?");
         System.out.println("1 - Imprimir Racas");
         System.out.println("2 - Imprimir Classes");
         System.out.println("3 - Escolher Raca");
@@ -19,7 +19,7 @@ public class Menu {
         System.out.println("5 - Rolar Dados");
         System.out.println("6 - Fechar");
     }
-    
+
     public static void equipamentos() {
         System.out.println("\nO que deseja fazer?");
         System.out.println("1 - Imprimir Armas");
@@ -28,30 +28,30 @@ public class Menu {
         System.out.println("4 - Escolher Armadura");
         System.out.println("5 - Fechar");
     }
-    
+
     public static void exec() {
         System.out.println("----- Bem Vindo(a) ao menu -----");
         int verifica[] = new int[3];
-        
+
         for(int i=0; i<3; i++){ verifica[i] = 0;}
         int x;
         int op = 0;
-        
+
         String nome;
         List numeros = new ArrayList<Integer>();
-       
+
         do{
             // tratamento de exceção InputMismatchException:
              try{
                 Scanner teclado = new Scanner(System.in);
-                menu();
+                imprimeMenuPrincipal();
                 op = teclado.nextInt();
-                
+
              }catch(InputMismatchException e){
                 System.out.println("Opcao invalida. Por favor, digite um numero.");
                 continue;
              }
-                
+
             switch(op){
 
                 case 1 -> BancoDeRacas.ImprimeRacas();
@@ -77,7 +77,7 @@ public class Menu {
                     } else {
                         Dados.definirAtributos(numeros);
                     }
-                    
+
                 }
                 case 6 -> {
                     op = 0;
@@ -88,10 +88,10 @@ public class Menu {
                 }
                 default ->{
                     System.out.println("Esta nao e uma opcao valida. Por favor, escolha outra opcao.");
-                }       
+                }
             }
         }while(op != 6 );
-        
+
         Scanner teclado = new Scanner(System.in);
         //teclado.nextLine();
         System.out.println("\n\n---Muito bem! Agora, vamos para a parte mais dificil: a escolha de um nome!---");
@@ -99,26 +99,26 @@ public class Menu {
         nome = teclado.nextLine();
         Personagem.setNome(nome);
     }
-    
+
     public static void exec2() {
         System.out.println("\n\n---Voce esta quase pronto para o combate, mas o caminho é muito perigoso, não vá sem escolher os equipamentos adequados!---");
-        
+
         int verifica[] = new int[2];
         for(int i=0; i<2; i++) verifica[i] = 0;
         int x;
         int op = 0;
-        
+
         do {
             // tratamento de exceção InputMismatchException:
             try{
                 Scanner teclado = new Scanner(System.in);
                 equipamentos();
                 op = teclado.nextInt();
-                
+
              }catch(InputMismatchException InputMismatchException){
                 System.out.println("Opcao invalida. Por favor, digite um numero.");
                 continue;}
-            
+
             switch(op) {
                 case 1 -> BancoDeArmas.ImprimeArmas();
                 case 2 -> BancoDeArmaduras.ImprimeArmaduras();
@@ -150,18 +150,18 @@ public class Menu {
                 }
                 default ->{
                     System.out.println("\nEsta não é uma opção válida. Escolha outra opcao");
-                } 
+                }
             }
         }while(op != 5);
     }
-    
+
     public static boolean encerrar() {
         int e = 0;
          try{
                 Scanner teclado = new Scanner(System.in);
                 System.out.println("1 - ENCERRAR PROGRAMA");
-                e = teclado.nextInt();    
-                
+                e = teclado.nextInt();
+
              }catch(InputMismatchException ex){
                 System.out.println("Opcao invalida. Por favor, digite um numero.");
              }

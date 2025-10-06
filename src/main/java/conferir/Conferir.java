@@ -1,12 +1,12 @@
 package conferir;
 
-import static ficha.Menu.menu;
+import static ficha.Menu.imprimeMenuPrincipal;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public interface Conferir {
     public static boolean Confere(){
-        
+
         while(true){
             int confere;
             // tratamento de exceção InputMismatchException:
@@ -16,13 +16,13 @@ public interface Conferir {
                 System.out.println("1 - Sim");
                 System.out.println("2 - Escolher outra opcao");
                 confere = teclado.nextInt();
-                
+
              }catch(InputMismatchException e){
                 System.out.println("Opcao invalida. Por favor, digite uma opcao valida.");
                 continue;}
-        
+
             switch(confere){
-                case 1 -> { 
+                case 1 -> {
                     System.out.println("Sua opcao foi confirmada.\n");
                     return true;
                 }
@@ -31,7 +31,7 @@ public interface Conferir {
                 }
                 default -> {
                     System.out.println("Opcao invalida. Por favor, digite uma opcao valida.");
-                    
+
                 }
             }
         }
